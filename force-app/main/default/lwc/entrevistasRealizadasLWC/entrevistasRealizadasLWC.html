@@ -1,0 +1,52 @@
+<template>
+
+    <lightning-card title="Entrevistas Realizadas">
+        
+        <!-- Tabela Com dados da vaga -->
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered border_layout">
+            <!-- Colunas -->
+            <thead>              
+                <tr>
+                    <th>Nome da Vaga</th>
+                    <th>Status da Vaga</th>                   
+                </tr>
+            </thead>
+            <!-- Linhas -->
+            <tbody>
+                <template for:each={listaDeEntrevistas} for:item="item" for:index="indexParent">
+                    <tr key={item.name} class="slds-hint-parent">  
+                        <td>{item.Vaga__r.Name}</td>
+                        <td>{item.Vaga__r.Status__c}</td>                                               
+                    </tr>   
+                </template>
+            </tbody>
+
+        </table>
+
+        <!-- Tabela Com dados da Entrevista -->
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered border_layout">
+            <!-- Colunas -->
+            <thead>     
+                <tr>                  
+                    <th>Data Entrevista</th>
+                    <th>Detalhes Entrevista</th>
+                </tr>
+            </thead>
+            <!-- Linhas -->
+            <tbody>
+                <template for:each={listaDeEntrevistas} for:item="item" for:index="indexParent">
+                    
+                        <template for:each={item.Entrevista__r} for:item="itemEntrevista" for:index="indexChild">
+                            <tr key={itemEntrevista.index}>
+                                <td>{itemEntrevista.DataEntrevista__c}</td>
+                                <td>{itemEntrevista.DetalhesEntrevista__c}</td>
+                            </tr>                            
+                        </template>   
+                </template>
+            </tbody>
+
+        </table>
+
+    </lightning-card>
+
+</template>
